@@ -1,5 +1,14 @@
 # chaws
 Change aws default profile to you specify profile.
+
+## Intall
+```
+curl -O https://github.com/daydayjuice/chaws/blob/master/chaws
+chmod +x chaws
+mv chaws /usr/local/bin/
+```
+
+## Usage
 For example there is aws profile like below:
 ```
 [default]
