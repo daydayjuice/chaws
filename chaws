@@ -1,0 +1,13 @@
+#!/bin/bash
+if [  -z "$1" ] ; then
+    echo "Please input the parameter like dev or prd"
+    exit -1
+fi
+now=$(date +%y%m%d%s)
+profile=$1
+sed '/default/,/aws_secret_access_key/d' < ~/.aws/credentials > ~/.aws/credentials.work
+sed -n "/${profile}/,/aws_secret_access_key/p" ~/.aws/credentials.work | sed "s/${profile}/default/" >> ~/.aws/credentials.work
+mv ~/.aws/credentials{,.bak.$now}
+mv ~/.aws/credentials.work ~/.aws/credentials
+aws sts get-caller-identity
+exit
